@@ -12,12 +12,12 @@ import { useEffect } from 'react';
 
 export function HomePage () {
 
+  //selector: store => data
   useEffect( () => {
-    console.log("componentDidMount => Data fetch");
+    //backend data request => data
 
-    return () => {
-      console.log("componentWillMount => process");
-    }
+
+    //slice: data => store
   }, []);
   return (
     <div className='homepage'>
