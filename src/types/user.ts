@@ -1,6 +1,6 @@
 import { MeLiked } from "./product";
 
-export interface Restaurants {
+export interface Restaurant {
   _id: string;
   mb_nick: string;
   mb_phone: string;
@@ -9,8 +9,8 @@ export interface Restaurants {
   mb_status: string;
   mb_address: string;
   mb_describtion: string;
-  mb_images: string;
-  mb_point: string;
+  mb_image: string;
+  mb_point: number;
   mb_top: string;
   mb_views: number;
   mb_likes: number;
@@ -27,11 +27,11 @@ export interface Member {
   mb_password: string;
   mb_type: string;
   mb_status: string;
-  mb_address?: string;
+  mb_address: string;
   mb_describtion?: string;
-  mb_image?: string;
-  mb_point?: string;
-  mb_top?: string;
+  mb_image: string;
+  mb_point: number;
+  mb_top: string;
   mb_views: number;
   mb_likes: number;
   mb_follow_cnt: number;

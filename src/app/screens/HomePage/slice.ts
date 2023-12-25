@@ -55,4 +55,3 @@ export const {
 
 const HomePageReducer = HomePageSlice.reducer;
 export default HomePageReducer;
-
