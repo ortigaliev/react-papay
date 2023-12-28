@@ -41,9 +41,7 @@ const HomePageSlice = createSlice({
     },
   },
 });
-// exported to be used in components
-// The actions created by the slice are exported.
-//These actions can be dispatched to update the state in the store.
+
 export const {
   setTopRestaurants,
   setBestRestaurants,
