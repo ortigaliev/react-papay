@@ -7,7 +7,7 @@ import styled from "styled-components";
 import LoginIcon from "@mui/icons-material/Login";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
-import MemberApiService from "../../../apiServices/memberApiService";
+import MemberApiService from "../../../apiServer/memberApiServer";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
 
 const useStyles = makeStyles((theme) => ({

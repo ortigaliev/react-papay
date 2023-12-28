@@ -25,7 +25,7 @@ import {
   sweetTopSmallSuccessAlert,
 } from "../lib/sweetAlert";
 import { Definer } from "../lib/Definer";
-import MemberApiService from "../apiServices/memberApiService";
+import MemberApiService from "../apiServer/memberApiServer";
 // import "../app/apiServer/verify";
 
 function App() {

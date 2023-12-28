@@ -1,97 +1,86 @@
+import React, { useEffect } from "react";
 import { MonetizationOn } from "@mui/icons-material";
 import { Box, Container, Stack } from "@mui/material";
-import React from "react";
+//REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import { setTrendProducts } from "../../screens/HomePage/slice";
+import { Product } from "../../../types/product";
+import ProductApiServer from "../../../apiServer/productApiServer";
+import { retrieveTrendProducts } from "./selector";
+import { serverApi } from "../../../lib/config";
 
-export function BestDishes () {
+//** REDUX SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTrendProducts: (data: Product[]) => dispatch(setTrendProducts(data)),
+});
+
+//** REDUX SELECTOR */
+const trendProductsRetriever = createSelector(
+  retrieveTrendProducts,
+  (trendProducts) => ({
+    trendProducts,
+  })
+);
+
+export function BestDishes() {
+  // Initialization
+  const { setTrendProducts } = actionDispatch(useDispatch());
+  const { trendProducts } = useSelector(trendProductsRetriever);
+  useEffect(() => {
+    const productService = new ProductApiServer();
+    productService
+      .getTargetProducts({ order: "product_likes", page: 1, limit: 4 })
+      .then((data) => {
+        setTrendProducts(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className="best_dishes_frame">
       <Container>
         <Stack flexDirection={"column"} alignItems={"center"}>
-        <Box className="category_title">Popular Menu</Box>
-        <Stack sx={{ mt: "43px"}} flexDirection={"row"}>
-
-          <Box className="dish_box">
-            <Stack className="dish_img" sx={{backgroundImage: `url(https://images.pexels.com/photos/1339057/pexels-photo-1339057.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`}} >
-              <div className={"dish_sale"} >normal size</div>
-              <div className={"view_btn"} >See detail
-              <img
-                        src={"/icons/dish_arrow.svg"}
-                        style={{marginLeft: "9px"}}
-                        />
-              </div>
-            </Stack>
-            <Stack className={"dish_desc"}>
-                    <span className={"dish_title_text"}>Spicy Meat</span>
+          <Box className="category_title">Famous Dishes</Box>
+          <Stack sx={{ mt: "43px" }} flexDirection={"row"}>
+            {trendProducts.map((product: Product) => {
+              const image_path = `${serverApi}/${product.product_images[0]}`;
+              const size_volume =
+                product.product_collection === "drink"
+                  ? product.product_volume + "l"
+                  : product.product_size + "size";
+              return (
+                <Box className="dish_box">
+                  <Stack
+                    className="dish_img"
+                    sx={{
+                      backgroundImage: `url(${image_path})`,
+                    }}
+                  >
+                    <div className={"dish_sale"}>{size_volume}</div>
+                    <div className={"view_btn"}>
+                      Batfsil Ko'rish{" "}
+                      <img
+                        src={"/icons/arrow_right.svg"}
+                        style={{ marginLeft: "9px" }}
+                      />
+                    </div>
+                  </Stack>
+                  <Stack className={"dish_desc"}>
+                    <span className={"dish_title_text"}>
+                      {product.product_name}
+                    </span>
                     <span className={"dish_desc_text"}>
-                        <MonetizationOn/>
-                        11
+                      <MonetizationOn />
+                      {product.product_price}
                     </span>
                   </Stack>
-          </Box>
-
-          {/* DISH BOX 2 */}
-          <Box className="dish_box">
-            <Stack className="dish_img" sx={{backgroundImage: `url(https://images.pexels.com/photos/1339057/pexels-photo-1339057.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`}} >
-              <div className={"dish_sale"} >normal size</div>
-              <div className={"view_btn"} >See detail
-              <img
-                        src={"/icons/dish_arrow.svg"}
-                        style={{marginLeft: "9px"}}
-                        />
-              </div>
-            </Stack>
-            <Stack className={"dish_desc"}>
-                    <span className={"dish_title_text"}>Spicy Meat</span>
-                    <span className={"dish_desc_text"}>
-                        <MonetizationOn/>
-                        11
-                    </span>
-                  </Stack>
-          </Box>
-
-
-          {/* DISH BOX 3 */}
-          <Box className="dish_box">
-            <Stack className="dish_img" sx={{backgroundImage: `url(https://images.pexels.com/photos/1339057/pexels-photo-1339057.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`}} >
-              <div className={"dish_sale"} >normal size</div>
-              <div className={"view_btn"} >See detail
-              <img
-                        src={"/icons/dish_arrow.svg"}
-                        style={{marginLeft: "9px"}}
-                        />
-              </div>
-            </Stack>
-            <Stack className={"dish_desc"}>
-                    <span className={"dish_title_text"}>Spicy Meat</span>
-                    <span className={"dish_desc_text"}>
-                        <MonetizationOn/>
-                        11
-                    </span>
-                  </Stack>
-          </Box>
-
-          {/* DISH BOX 4 */}
-          <Box className="dish_box">
-            <Stack className="dish_img" sx={{backgroundImage: `url(https://images.pexels.com/photos/1339057/pexels-photo-1339057.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`}} >
-              <div className={"dish_sale"} >normal size</div>
-              <div className={"view_btn"} >See detail
-              <img
-                        src={"/icons/dish_arrow.svg"}
-                        style={{marginLeft: "9px"}}
-                        />
-              </div>
-            </Stack>
-            <Stack className={"dish_desc"}>
-                    <span className={"dish_title_text"}>Spicy Meat</span>
-                    <span className={"dish_desc_text"}>
-                        <MonetizationOn/>
-                        11
-                    </span>
-                  </Stack>
-          </Box>
-
-        </Stack>
+                </Box>
+              );
+            })}
+          </Stack>
         </Stack>
       </Container>
-    </div>)
-};
+    </div>
+  );
+}

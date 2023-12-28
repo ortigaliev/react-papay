@@ -17,7 +17,7 @@ class MemberApiServer {
         withCredentials: true,
       });
       console.log("state:", result.data.state);
-      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data, Definer.input_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
 
       const member: Member = result.data.data;
@@ -35,7 +35,7 @@ class MemberApiServer {
         withCredentials: true,
       });
       console.log("state:", result.data.state);
-      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data, Definer.input_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
 
       const member: Member = result.data.data;
@@ -53,7 +53,7 @@ class MemberApiServer {
         withCredentials: true,
       });
 
-      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data, Definer.input_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
       localStorage.removeItem("member_data");
       const logout_result = result.data.state;

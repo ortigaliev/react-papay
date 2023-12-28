@@ -18,7 +18,7 @@ import {
 } from "../../screens/HomePage/slice";
 import { retrieveTopRestaurants } from "./selector";
 import { Restaurant } from "../../../types/user";
-import RestaurantApiServer from "../../../apiServices/restaurantApiServer";
+import RestaurantApiServer from "../../../apiServer/restaurantApiServer";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setTopRestaurants: (data: Restaurant[]) =>

@@ -17,7 +17,7 @@ import { useSelector} from "react-redux";
 import { createSelector } from "reselect";
 import {retrieveBestRestaurants } from "./selector"
 import { Restaurant } from "../../../types/user";
-import RestaurantApiService from "../../../apiServices/restaurantApiServer";
+import RestaurantApiService from "../../../apiServer/restaurantApiServer";
 import { serverApi } from "../../../lib/config";
 
 //REDUX SELECTOR
