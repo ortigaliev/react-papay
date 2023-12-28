@@ -1,72 +1,69 @@
-import { Container } from "@mui/material";
 import React, { useEffect } from "react";
+import { Container } from "@mui/material";
 import { Statistics } from "./statistics";
 import { TopRestaurants } from "./topRestaurants";
 import { BestRestaurants } from "./bestRestaurants";
 import { BestDishes } from "./bestDishes";
 import { Advertisements } from "./advertisements";
 import { Events } from "./events";
-import "../../../css/home.css";
 import { Recommendations } from "./recommendation";
-
-//REDUX
+import "../../../css/home.css";
+//Redux
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import { setBestRestaurants, setTopRestaurants } from "./slice";
+import { setTopRestaurants } from "./slice";
 import { retrieveTopRestaurants } from "./selector";
 import { Restaurant } from "../../../types/user";
-import RestaurantApiService from "../../../apiServices/restaurantApiService";
+import RestaurantApiServer from "../../../apiServices/restaurantApiServer";
 
-// REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
   setTopRestaurants: (data: Restaurant[]) => dispatch(setTopRestaurants(data)),
-  setBestRestaurants: (data: Restaurant[]) =>
-    dispatch(setBestRestaurants(data)),
 });
-// REDUX SELECTOR
-const topRestaurantRetriever = createSelector(
+//** Redux Selector */
+const topRestaurantsRetriever = createSelector(
   retrieveTopRestaurants,
   (topRestaurants) => ({
     topRestaurants,
   })
 );
 
-
-export function HomePage() {
-  //INITIALIZATION
-  const { setTopRestaurants, setBestRestaurants } = actionDispatch(
-    useDispatch()
+// REDUX SELECTOR
+const topRestaurantRetriever = createSelector(
+  retrieveTopRestaurants,
+  (topRestaurants) => ({
+    topRestaurants,
+  })
   );
 
-  //selector: store => data
 
-  useEffect(() => {
-    const restaurantService = new RestaurantApiService();
+  export function HomePage() {
+    // selector: store => data
 
-    restaurantService
-      .getTopRestaurants()
-      .then((data) => {
-        setTopRestaurants(data);
-      })
-      .catch((err) => console.log(err));
-
-    restaurantService
-      .getRestaurants({ page: 1, limit: 4, order: "mb_point" })
-      .then((data) => {
-        setBestRestaurants(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  return (
-    <div className="homepage">
-      <Statistics />
-      <TopRestaurants />
-      <BestRestaurants />
-      <BestDishes />
-      <Advertisements />
-      <Events />
-      <Recommendations />
-    </div>
-  );
+    // Initialization
+    const { setTopRestaurants } = actionDispatch(useDispatch());
+    const { topRestaurants } = useSelector(topRestaurantsRetriever);
+    console.log("topRestaurants:::", topRestaurants);
+    useEffect(() => {
+      // backend data request => data
+      // slice: data => store
+      const restaurantService = new RestaurantApiServer();
+      restaurantService
+        .getTopRestaurants()
+        .then((data) => {
+          setTopRestaurants(data);
+        })
+        .catch((err) => console.log(err));
+    }, []);
+      return (
+        <div className="homepage">
+        <Statistics />
+        <TopRestaurants />
+        <BestRestaurants />
+        <BestDishes />
+        <Advertisements />
+        <Events />
+        <Recommendations />
+        </div>
+        );
 }

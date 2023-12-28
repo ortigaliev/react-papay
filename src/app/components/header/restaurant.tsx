@@ -1,31 +1,21 @@
+import React from "react";
 import {
   Badge,
   Box,
   Button,
-  Icon,
+  Container,
   IconButton,
-  ListItem,
   ListItemIcon,
   Menu,
   MenuItem,
   Stack,
 } from "@mui/material";
-import { Container } from "@mui/system";
-import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Logout } from "@mui/icons-material";
 
-export function NavbarHome(props: any) {
-  // Initializations
-  // const [count, setCount] = useState(1); //componentDidMount
-  // const [value, setValue] = useState(true); // componentWillUnmount
-  // Handlers
-  // useEffect(() => {
-  //   setCount(count + 1);
-  // }, [value]); // component DidUpdate
-
+export function NavbarRestaurant(props: any) {
   return (
-    <div className="format home_navbar">
+    <div className="format_restaurant home_navbar">
       <Container>
         <Stack
           flexDirection={"row"}
@@ -42,9 +32,7 @@ export function NavbarHome(props: any) {
             className="navbar_links"
           >
             <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/" activeClassName="underline">
-                Home
-              </NavLink>
+              <NavLink to="/">Home</NavLink>
             </Box>
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/restaurant" activeClassName="underline">
@@ -103,7 +91,6 @@ export function NavbarHome(props: any) {
                 onClick={props.handleLogoutClick}
               />
             )}
-
             <Menu
               anchorEl={props.anchorEl}
               open={props.open}
@@ -147,47 +134,8 @@ export function NavbarHome(props: any) {
             </Menu>
           </Stack>
         </Stack>
-
-        <Stack className="head_information" justifyContent={"row"}>
-          <Stack
-            justifyContent={"column"}
-            style={{ marginTop: "86px", marginLeft: "24px" }}
-          >
-            <Box>
-              <img src="/icons/welcome.svg" />
-            </Box>
-            <Box className="define_restaurant">
-              Papays - Revolutionizing Your Dining Experience with Every
-              Delivery
-            </Box>
-            <Box className="timeline_service">
-              Welcome to Papay, the ultimate online food delivery platform where
-              convenience, variety, and exceptional culinary experiences
-              converge. In today's fast-paced world, Papay understands the value
-              of your time and the importance of a delicious meal, which is why
-              we are dedicated to bringing your favorite dishes from the best
-              local restaurants directly to your doorstep.{" "}
-            </Box>
-            <Box sx={{ mt: "90px" }}>
-              {!props.verifiedMemberData ? ( // login buganda signup button yoqoladi
-                <Button
-                  variant="contained"
-                  style={{
-                    width: "210px",
-                    height: "60px",
-                    background: "#1976D2",
-                    color: "#FFFFFF",
-                  }}
-                  onClick={props.handleSignupOpen}
-                >
-                  Registration
-                </Button>
-              ) : null}
-            </Box>
-          </Stack>
-          <Box className="big_img"></Box>
-        </Stack>
       </Container>
+      ;
     </div>
   );
 }
