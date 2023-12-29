@@ -18,7 +18,7 @@ class RestaurantApiServer {
     try {
       const url = "/restaurants?order=top&page=1&limit=4",
       result = await axios.get(this.path + url, { withCredentials: true });
-      assert.ok(result, Definer.input_err1);
+      assert.ok(result, Definer.general_err1);
 
       console.log("result:::", result.data.state);
 
@@ -36,12 +36,9 @@ class RestaurantApiServer {
     try {
       const url = `/restaurants?order=${data.order}&page=${data.page}&limit=${data.limit}`,
       result = await axios.get(this.path + url, { withCredentials: true });
-      console.log("1");
-      console.log("url::", url);
-      console.log("result::", result);
-      assert.ok(result, Definer.input_err1);
+      assert.ok(result, Definer.general_err1);
 
-      // console.log("state:",  result.data.state);
+      console.log("state:",  result.data.state);
       const restaurants: Restaurant [] = result.data.data;
       return restaurants;
       console.log("result::", result);

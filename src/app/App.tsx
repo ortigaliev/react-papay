@@ -16,7 +16,6 @@ import { NavbarHome } from "./components/header";
 import { NavbarRestaurant } from "./components/header/restaurant";
 import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/footer";
-import AuthenticationModal from "./components/auth";
 
 // import { SettingsSharp } from "@mui/icons-material";
 import { Member } from "../types/user";
@@ -68,7 +67,6 @@ function App() {
         </Route>
       </Switch>
       <Footer />
-      <AuthenticationModal />
     </Router>
   );
 }

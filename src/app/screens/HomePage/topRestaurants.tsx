@@ -71,7 +71,7 @@ const bestRestaurantRetriever = createSelector(
           <CardOverflow sx={{display: "flex", gap: 1.5, py: 1.5, px: "var(--Card-padding)", borderTop: "1px solid"}}>
           <IconButton className="top_restaurant_like-button" aria-label="Like minimal photography" size="md" variant="solid" color="neutral">
           <Favorite style={{ fill:
-            ele?.me_liked && ele?.me_liked[0].my_favorite
+            ele?.me_liked && ele?.me_liked[0]?.my_favorite
             ? "red"
             : "white",
             }}/>

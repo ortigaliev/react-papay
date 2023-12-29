@@ -82,7 +82,7 @@ export function NavbarHome(props: any) {
                 aria-expanded={undefined}
               >
                 <Badge badgeContent={3} color="secondary">
-                  <img src="/icons/shopping_cart.svg" />
+                  <img src="icons/shopping_card.svg" />
                 </Badge>
               </IconButton>
             </Box>
@@ -180,7 +180,7 @@ export function NavbarHome(props: any) {
                   }}
                   onClick={props.handleSignupOpen}
                 >
-                  Registration
+                  Sign Up
                 </Button>
               ) : null}
             </Box>
