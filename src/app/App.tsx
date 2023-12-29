@@ -17,6 +17,7 @@ import { NavbarRestaurant } from "./components/header/restaurant";
 import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/footer";
 import AuthenticationModal from "./components/auth";
+
 // import { SettingsSharp } from "@mui/icons-material";
 import { Member } from "../types/user";
 import { serverApi } from "../lib/config";
@@ -29,95 +30,19 @@ import MemberApiService from "../apiServer/memberApiServer";
 // import "../app/apiServer/verify";
 
 function App() {
-  //** Initializations */
   // React functional component
-  const [verifiedMemberData, setverifiedMemberData] = useState<Member | null>(
-    null
-  );
   const [path, setPath] = useState();
   // const location = useLocation();
   const main_path = window.location.pathname;
-  const [signUpOpen, setSignUpOpen] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(false);
-
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-
-  useEffect(() => {
-    console.log("==== useEffect: App ====");
-    const memberDataJson: any = localStorage.getItem("member_data")
-      ? localStorage.getItem("member_data")
-      : null;
-    const member_data = memberDataJson ? JSON.parse(memberDataJson) : null; // convers to object
-    if (member_data) {
-      member_data.mb_image = member_data.mb_image
-        ? `${serverApi}/${member_data.mb_image}`
-        : "/auth/default_user.png";
-      setverifiedMemberData(member_data);
-    }
-  }, [signUpOpen, loginOpen]); // rerenders if eithere changes in array
-
-  /**  Handlers */
-  const handleSignupOpen = () => setSignUpOpen(true);
-  const handleSignupClose = () => setSignUpOpen(false);
-  const handleLoginOpen = () => setLoginOpen(true);
-  const handleLoginClose = () => setLoginOpen(false);
-  const handleLogoutClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleCloseLogOut = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(null);
-  };
-
-  const handleLogOutRequest = async () => {
-    try {
-      const memberApiService = new MemberApiService();
-      await memberApiService.logOutRequest();
-      await sweetTopSmallSuccessAlert("success", 500, true);
-    } catch (err: any) {
-      console.log(err);
-      sweetFailureProvider(Definer.general_err1);
-    }
-  };
-
   return (
     <Router>
       {main_path === "/" ? (
-        <NavbarHome
-          setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
-          handleSignupOpen={handleSignupOpen}
-          anchorEl={anchorEl}
-          open={open}
-          handleLogoutClick={handleLogoutClick}
-          handleCloseLogOut={handleCloseLogOut}
-          handleLogOutRequest={handleLogOutRequest}
-          verifiedMemberData={verifiedMemberData}
-        />
+        <NavbarHome setPath={setPath} />
       ) : main_path.includes("/restaurant") ? (
-        <NavbarRestaurant
-          setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
-          anchorEl={anchorEl}
-          open={open}
-          handleLogoutClick={handleLogoutClick}
-          handleCloseLogOut={handleCloseLogOut}
-          handleLogOutRequest={handleLogOutRequest}
-          verifiedMemberData={verifiedMemberData}
-        />
+        <NavbarRestaurant setPath={setPath} />
       ) : (
-        <NavbarOthers
-          setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
-          anchorEl={anchorEl}
-          open={open}
-          handleLogoutClick={handleLogoutClick}
-          handleCloseLogOut={handleCloseLogOut}
-          handleLogOutRequest={handleLogOutRequest}
-          verifiedMemberData={verifiedMemberData}
-        />
+        <NavbarOthers setPath={setPath} />
       )}
-
       <Switch>
         <Route path="/restaurant">
           <RestaurantPage />
@@ -143,18 +68,8 @@ function App() {
         </Route>
       </Switch>
       <Footer />
-      <AuthenticationModal
-        loginOpen={loginOpen}
-        handleLoginOpen={handleLoginOpen}
-        handleLoginClose={handleLoginClose}
-        signUpOpen={signUpOpen}
-        handleSignupOpen={handleSignupOpen}
-        handleSignupClose={handleSignupClose}
-      />
+      <AuthenticationModal />
     </Router>
   );
 }
-
 export default App;
-
-// Functional components are the simplest way to create presentational components that do not require state or lifecycle methods.

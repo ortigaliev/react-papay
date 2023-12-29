@@ -37,28 +37,28 @@ const bestRestaurantRetriever = createSelector(
       <Stack className="top-restaurant_stack">
       <Box className="category_title">Top Restaurants</Box>
       <Stack className="top_restaurants_card-wrapper">
-      {/* JOY MIU CARD COMPONENT */}
       {bestRestaurants.map((ele: Restaurant) => {
         const image_path = `${serverApi}/${ele.mb_image}`;
         return(
-          <CssVarsProvider>
+          <CssVarsProvider key={ele._id}>
           {/* TOP RESTAURANT CARD 1 */}
           <Card className="top_restaurants_card">
           <CardCover>
           <img
           src={image_path}
           loading="lazy"
-          alt=""
-          />
+          alt="lazy"/>
           </CardCover>
-          <CardCover
-          sx={{
+          <CardCover sx={{
             background:
             'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)',
-          }}
-          />
+          }}>
+          </CardCover>
+
           <CardContent sx={{ justifyContent: 'flex-end' }}>
-          <Typography level="title-lg" textColor="#fff">
+          <Typography
+          level="title-lg"
+          textColor="#fff">
           {ele.mb_nick}
           </Typography>
           <Typography
@@ -70,19 +70,45 @@ const bestRestaurantRetriever = createSelector(
           </CardContent>
           <CardOverflow sx={{display: "flex", gap: 1.5, py: 1.5, px: "var(--Card-padding)", borderTop: "1px solid"}}>
           <IconButton className="top_restaurant_like-button" aria-label="Like minimal photography" size="md" variant="solid" color="neutral">
-          <Favorite style={{ fill: "white"}}/>
+          <Favorite style={{ fill:
+            ele?.me_liked && ele?.me_liked[0].my_favorite
+            ? "red"
+            : "white",
+            }}/>
 
           </IconButton>
           <Stack sx={{flexDirection: "row"}}>
-          <Typography sx={{fontWeight: "md", color: "neutral.300", alignItems: "center",display: "flex" }}> {ele.mb_views} {" "}
-          <VisibilityIcon sx={{ fontSize: 20, marginLeft: "5px"}}/>
+          <Typography
+          sx={{fontWeight: "md",
+          color: "neutral.300",
+          alignItems: "center",
+          display: "flex"
+          }}>
+          {ele.mb_views}
+          <VisibilityIcon
+          sx={{ fontSize: 20,
+          marginLeft: "5px"}}/>
           </Typography>
-          <Box sx={{ width: 2, bgcolor: "divider", ml: "6px", mr: "6px"}}/>
-          <Typography sx={{ fontWeight: "md", color: "neutral.300", alignItems: "center", display: "flex" }}>
+          <Box
+          sx={{ width: 2,
+          bgcolor: "divider",
+          ml: "6px",
+          mr: "6px"}}/>
+
+          <Typography
+          sx={{ fontWeight: "md",
+          color: "neutral.300",
+          alignItems: "center",
+          display: "flex" }}>
+
           <div> {ele.mb_likes} </div>
-          <Favorite sx={{ fontSize: 20, marginLeft: "5px"}}/>
+
+          <Favorite
+          sx={{ fontSize: 20,
+          marginLeft: "5px"}}/>
           </Typography>
           </Stack>
+
           </CardOverflow>
           </Card>
           </CssVarsProvider>
