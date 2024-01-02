@@ -8,15 +8,15 @@ export function MySettings(props: any) {
     <Stack className="my_settings_page">
       <Box className={"member_media_frame"}>
         <img
-          src="/icons/user.svg"
+          src="/icons/default_img.svg"
           className="mb_image"
           style={{ borderRadius: "50%" }}
           width={"100px"}
-          height={"100px"}
+          height={"100px"} 
         />
         <div className="media_change_box">
-          <span>Upload img</span>
-          <p>Please follow these  img formats (JPG JPEG PNG)</p>
+          <span>Rasm Yuklash</span>
+          <p>JPG,JPEG,PNG rasmlarini yuklay olasiz!</p>
           <div className="up_del_box">
             <Button component="label" style={{ minWidth: "0" }}>
               <CloudDownloadIcon />
@@ -27,48 +27,48 @@ export function MySettings(props: any) {
       </Box>
       <Box className="input_frame">
         <div className="long_input">
-          <label className="spec_label">Name</label>
+          <label className="spec_label">Ism</label>
           <input
             type="text"
             className="spec_input mb_nick"
             name="mb_nick"
-            placeholder="Please enter your name..."
+            placeholder="User Name"
           />
         </div>
       </Box>
       <Box className="input_frame">
         <div className="short_input">
-          <label className="spec_label">Phone number</label>
+          <label className="spec_label">Telefon Raqam</label>
           <input
             type="text"
             className="spec_input mb_phone"
             name="mb_phone"
-            placeholder="Phone number"
+            placeholder="99890 34353534"
           />
         </div>
         <div className="short_input">
-          <label className="spec_label">Address</label>
+          <label className="spec_label">Manzil</label>
           <input
             type="text"
             className="spec_input mb_address"
             name="mb_address"
-            placeholder="Please enter your address..  "
+            placeholder="Tashkent, Yunus Abad 4-1"
           />
         </div>
       </Box>
       <Box className="input_frame">
         <div className="long_input">
-          <label className="spec_label">About</label>
+          <label className="spec_label">Ma'lumot</label>
           <textarea
-
+            
             className="spec_textarea mb_description"
             name="mb_description"
-            placeholder="I am really happy to share my feeling"
+            placeholder="mavjud emas"
           />
         </div>
       </Box>
       <Box display={"flex"} justifyContent={"flex-end"} sx={{mt: "25px"}}>
-        <Button variant="contained">Save</Button>
+        <Button variant="contained">Saqlash</Button>
       </Box>
     </Stack>
   );

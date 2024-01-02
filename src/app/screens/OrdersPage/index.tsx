@@ -1,21 +1,45 @@
 
-
 import  "../../../css/order.css";
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import React, { useEffect, useState } from "react";
 import { Container, Stack, Box } from "@mui/material";
-
 import TabList from "@mui/lab/TabList";
-
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PausedOrders from "../../components/orders/pausedOrders";
 import ProcessOrders from "../../components/orders/processOrders";
 import FinishedOrders from "../../components/orders/finishedOrders";
+import { Order } from "../../../types/order";
+
+//Redux
+import { useDispatch } from "react-redux";
+import { Dispatch } from '@reduxjs/toolkit';
+import {
+  setPausedOrders,
+  setProcessOrders,
+  setFinishedOrders
+} from "../../screens/OrdersPage/slice";
+
+
+// REDUX SLICE
+const actionDispatch = (dispach: Dispatch) => ({
+  setPausedOrders: (data: Order[]) => dispach(setPausedOrders(data)),
+  setProcessOrders: (data: Order) => dispach(setProcessOrders(data)),
+  setFinishedOrders: (data: Order[]) => dispach(setFinishedOrders(data)),
+});
+
+
 
 export function OrdersPage(props: any) {
-    /** INITIALIZATIONS **/
-    const [value, setValue] = useState("1");
+  /** INITIALIZATIONS **/
+  const [value, setValue] = useState("1");
+  const { setPausedOrders, setProcessOrders, setFinishedOrders } =
+    actionDispatch(useDispatch());
+
+
+  useEffect(() => {
+
+  },[])
 
 
   /** HANDLERS **/
@@ -26,7 +50,7 @@ export function OrdersPage(props: any) {
 return (
     <div className={"order_page"}>
       <Container
-        style={{ display: "flex", flexDirection: "row" }}
+        style={{ display: "flex", flexDirection: "row" }}      
         sx={{ mt: "50px", mb: "50px" }}
       >
         <Stack className={"order_left"}>
@@ -35,13 +59,13 @@ return (
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <TabList
                   onChange={handleChange}
-
+               
                   aria-label="basic tabs example"
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <Tab label="MY ORDER" value={"1"} />
-                  <Tab label="PROCESS" value={"2"} />
-                  <Tab label="FINISHED" value={"3"} />
+                  <Tab label="Buyurtmalarim" value={"1"} />
+                  <Tab label="Jarayon" value={"2"} />
+                  <Tab label="Yakunlangan" value={"3"} />
                 </TabList>
               </Box>
             </Box>
@@ -49,7 +73,7 @@ return (
             <PausedOrders />
             <ProcessOrders />
             <FinishedOrders />
-
+            
             </Stack>
           </TabContext>
         </Stack>
@@ -62,21 +86,20 @@ return (
             >
               <div className={"order_user_img"}>
                 <img
-                src={"/others/user.jpg"}
-
+                src={"/others/user.png"}   
                 />
                 <div className={"order_user_icon_box"}>
                   <img
-                    src={"/others/user_icon.svg"}
+                    src={"/icons/user_icon.svg"}
                     className={"order_user_prof_img"}
                   />
                 </div>
               </div>
               <span className={"order_user_name"}>
-                MAX
+                Neo
               </span>
               <span className={"order_user_prof"}>
-              "USER"
+              "Foydalanuvchi"
               </span>
             </Box>
             <Box
@@ -89,7 +112,7 @@ return (
                 <LocationOnIcon />
               </div>
               <div className={"spec_address_txt"}>
-               "ANDIJON CITY"
+               "Seoul"
               </div>
             </Box>
           </Box>
@@ -97,7 +120,7 @@ return (
             <input
               type={"text"}
               name={"card_number"}
-              placeholder={"Card number : 3456 4567 7796 7177"}
+              placeholder={"Card number : 5243 4090 2002 7495"}
               className={"card_input"}
             />
             <div
@@ -110,20 +133,20 @@ return (
               <input
                 type={"text"}
                 name={"card_period"}
-                placeholder={"08 / 25"}
+                placeholder={"07 / 24"}
                 className={"card_half_input"}
               />
               <input
                 type={"text"}
                 name={"card_cvv"}
-                placeholder={"CVV : 133"}
+                placeholder={"CVV : 010"}
                 className={"card_half_input"}
               />
             </div>
             <input
               type={"text"}
               name={"card_creator"}
-              placeholder={"Please enter your name"}
+              placeholder={"Sardor Akhmadullaev"}
               className={"card_input"}
             />
             <div className={"cards_box"}>
@@ -138,3 +161,8 @@ return (
     </div>
   );
 }
+
+
+
+
+        

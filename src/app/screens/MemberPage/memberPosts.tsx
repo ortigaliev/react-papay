@@ -1,4 +1,3 @@
-
 import React, { ChangeEvent, useRef, useState } from "react";
 import { Box, Container, Stack } from "@mui/material";
 import moment from "moment";
@@ -15,24 +14,24 @@ export function MemberPosts(props: any) {
           <Stack className="all_article_box" sx={{ cursor: "pointer" }}>
             <Box
               className={"all_article_img"}
-              sx={{ backgroundImage: `url('/icons/user.svg')` }}
+            //   sx={{ backgroundImage: `url('/icons/default_img.svg')` }}
             ></Box>
             <Box className={"all_article_container"}>
               <Box alignItems={"center"} display={"flex"}>
                 <img
-                  src="/icons/user.svg"
+                  src="/icons/default_img.svg"
                   width={"35px"}
                   style={{ borderRadius: "50%", backgroundSize: "cover" }}
                 />
-                <span className="all_article_author_user">Healty eating for Life</span>
+                <span className="all_article_author_user">Sardor</span>
               </Box>
               <Box
                 display={"flex"}
                 flexDirection={"column"}
                 sx={{ mt: "15px" }}
               >
-                <span className="all_article_title">Ratings and Reviews</span>
-                <p className="all_article_desc">Health food in Uzum</p>
+                <span className="all_article_title">Restaurantlarga baho</span>
+                <p className="all_article_desc">Burak ajoyib Restaurant</p>
               </Box>
               <Box>
                 <Box
