@@ -82,7 +82,7 @@ export function NavbarHome(props: any) {
                 aria-expanded={undefined}
               >
                 <Badge badgeContent={3} color="secondary">
-                  <img src="icons/shopping_card.svg" />
+                  <img src="icons/shopping-card.svg" />
                 </Badge>
               </IconButton>
             </Box>
@@ -148,25 +148,19 @@ export function NavbarHome(props: any) {
           </Stack>
         </Stack>
 
-        <Stack className="head_information" justifyContent={"row"}>
+        <Stack className="header_info" justifyContent={"row"}>
           <Stack
             justifyContent={"column"}
             style={{ marginTop: "86px", marginLeft: "24px" }}
           >
             <Box>
-              <img src="/icons/welcome.svg" />
+              <img src="icons/welcome.svg" />
             </Box>
             <Box className="define_restaurant">
-              Papays - Revolutionizing Your Dining Experience with Every
-              Delivery
+            The Authentic Restaurant & Cafe
             </Box>
             <Box className="timeline_service">
-              Welcome to Papay, the ultimate online food delivery platform where
-              convenience, variety, and exceptional culinary experiences
-              converge. In today's fast-paced world, Papay understands the value
-              of your time and the importance of a delicious meal, which is why
-              we are dedicated to bringing your favorite dishes from the best
-              local restaurants directly to your doorstep.{" "}
+            24 soat xizmatingizdamiz.
             </Box>
             <Box sx={{ mt: "90px" }}>
               {!props.verifiedMemberData ? ( // login buganda signup button yoqoladi

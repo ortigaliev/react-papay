@@ -15,29 +15,29 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 //REDUX
 import { useSelector} from "react-redux";
 import { createSelector } from "reselect";
-import {retrieveBestRestaurants } from "./selector"
+import {retrieveTopRestaurants } from "./selector";
 import { Restaurant } from "../../../types/user";
-import RestaurantApiService from "../../../apiServer/restaurantApiServer";
+import RestaurantApiServer from "../../../apiServer/restaurantApiServer";
 import { serverApi } from "../../../lib/config";
 
 //REDUX SELECTOR
-const bestRestaurantRetriever = createSelector(
-  retrieveBestRestaurants,
-  (bestRestaurants) => ({
-    bestRestaurants,
+const topRestaurantRetriever = createSelector(
+  retrieveTopRestaurants,
+  (topRestaurants) => ({
+    topRestaurants,
   })
   );
 
 
   export function TopRestaurants () {
-    const { bestRestaurants } = useSelector(bestRestaurantRetriever);
+    const { topRestaurants } = useSelector(topRestaurantRetriever);
     return (
       <div className="top_restaurant_frame">
       <Container>
       <Stack className="top-restaurant_stack">
       <Box className="category_title">Top Restaurants</Box>
       <Stack className="top_restaurants_card-wrapper">
-      {bestRestaurants.map((ele: Restaurant) => {
+      {topRestaurants.map((ele: Restaurant) => {
         const image_path = `${serverApi}/${ele.mb_image}`;
         return(
           <CssVarsProvider key={ele._id}>

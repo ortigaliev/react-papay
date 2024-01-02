@@ -6,6 +6,7 @@
   display: flex;
   background: url(/public/homeImg/restaurantImg.png);
   background-size: cover;
+  color: #d1d1d1;
 }
 
 /* NAVBAR RESTAURANT */
@@ -31,6 +32,7 @@
   height: 46px;
   margin-left: 26px;
   margin-top: 55px;
+
 }
 
 .home_navbar .navbar_links {
@@ -96,11 +98,12 @@
 }
 
 .home_navbar .big_img {
+  display: flex;
   display: block;
-  width: 276.997px;
+  width: 277px;
   height: 277px;
   background: url('/public/icons/halal_icon.svg');
   background-size: cover;
   margin-left: auto;
-  margin-top: 40px;
+  margin-right: 41px;
 }

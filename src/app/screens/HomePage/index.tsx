@@ -20,6 +20,7 @@ import { retrieveTopRestaurants } from "./selector";
 import { Restaurant } from "../../../types/user";
 import RestaurantApiServer from "../../../apiServer/restaurantApiServer";
 
+//Redux Silice
 const actionDispatch = (dispatch: Dispatch) => ({
   setTopRestaurants: (data: Restaurant[]) =>
   dispatch(setTopRestaurants(data)),
