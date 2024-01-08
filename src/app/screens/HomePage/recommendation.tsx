@@ -36,7 +36,7 @@ export function Recommendations() {
                                                 src={"/auth/default_user.svg"}
                                                 sx={{ width: "35px", height: "35px" }}
                                             />
-                                            <span className={"author_username"}>Sardor</span>
+                                            <span className={"author_username"}>Max</span>
                                         </div>
                                         <span className={"article_title"}>
                                             Eng qiziqarli va shirin taomlar
@@ -62,7 +62,7 @@ export function Recommendations() {
                                                 src={"/auth/default_user.svg"}
                                                 sx={{ width: "35px", height: "35px" }}
                                             />
-                                            <span className={"author_username"}>Sardor</span>
+                                            <span className={"author_username"}>Max</span>
                                         </div>
                                         <span className={"article_title"}>
                                             Eng qiziqarli va shirin taomlar
@@ -90,7 +90,7 @@ export function Recommendations() {
                                                 src={"/auth/default_user.svg"}
                                                 sx={{ width: "35px", height: "35px" }}
                                             />
-                                            <span className={"author_username"}>Neo</span>
+                                            <span className={"author_username"}>Max</span>
                                         </div>
                                         <span className={"article_title"}>
                                             Jizzax somsasining mazasi o'zgacha
@@ -116,7 +116,7 @@ export function Recommendations() {
                                                 src={"/auth/default_user.svg"}
                                                 sx={{ width: "35px", height: "35px" }}
                                             />
-                                            <span className={"author_username"}>Neo</span>
+                                            <span className={"author_username"}>Max</span>
                                         </div>
                                         <span className={"article_title"}>
                                         Jizzax somsasining mazasi o'zgacha

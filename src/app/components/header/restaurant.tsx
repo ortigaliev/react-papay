@@ -66,14 +66,14 @@ export function NavbarRestaurant(props: any) {
                             Help
                         </NavLink>
             </Box>
-            
+
             <Basket
               cartItems={props.cartItems}
               onAdd={props.onAdd}
               onRemove={props.onRemove}
               onDelete={props.onDelete}
-              onDeleteAll={props.onDeleteAll }/>
-            
+              onDeleteAll={props.onDeleteAll}
+              setOrderReBuild={props.setOrderReBuild}/>
                     {!props.verifiedMemberData ? (
               <Box>
                 <Button
@@ -91,7 +91,7 @@ export function NavbarRestaurant(props: any) {
                 onClick={props.handleLogOutClick}
               />
                     )};
-                    
+
                     <Menu
               anchorEl={props.anchorEl}
               open={props.open}
@@ -142,4 +142,3 @@ export function NavbarRestaurant(props: any) {
     </div>
     );
 }
-

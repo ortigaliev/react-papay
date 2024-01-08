@@ -33,7 +33,7 @@ export function CommunityChats() {
                         style={{ display: "flex" }}
                         sx={{ m: "10px 0px" }}
                     >
-                        <Avatar alt={"Neo"} src={"/community/cute_girl.jpeg"} />
+                        <Avatar alt={"Max"} src={"/community/cute_girl.jpeg"} />
                         <div className={"msg_left"}>Bu yerda boshqalarni habari</div>
                     </Box>
                 </Box>

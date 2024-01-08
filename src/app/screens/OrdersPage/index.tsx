@@ -19,6 +19,7 @@ import {
   setProcessOrders,
   setFinishedOrders
 } from "../../screens/OrdersPage/slice";
+import OrderApiService from "../../apiServices/orderApiService";
 
 
 // REDUX SLICE
@@ -38,8 +39,21 @@ export function OrdersPage(props: any) {
 
 
   useEffect(() => {
+    const orderService = new OrderApiService();
+    orderService
+      .getMyOrders("paused")
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+      orderService
+      .getMyOrders("process")
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+      orderService
+      .getMyOrders("finished")
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
 
-  },[])
+  },[props.orderReBuild])
 
 
   /** HANDLERS **/
@@ -50,7 +64,7 @@ export function OrdersPage(props: any) {
 return (
     <div className={"order_page"}>
       <Container
-        style={{ display: "flex", flexDirection: "row" }}      
+        style={{ display: "flex", flexDirection: "row" }}
         sx={{ mt: "50px", mb: "50px" }}
       >
         <Stack className={"order_left"}>
@@ -59,7 +73,7 @@ return (
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <TabList
                   onChange={handleChange}
-               
+
                   aria-label="basic tabs example"
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
@@ -70,10 +84,9 @@ return (
               </Box>
             </Box>
             <Stack className={"order_main_content"}>
-            <PausedOrders />
-            <ProcessOrders />
-            <FinishedOrders />
-            
+            <PausedOrders setOrderReBuild = {props.setOrderReBuild} />
+            <ProcessOrders setOrderReBuild = {props.setOrderReBuild} />
+            <FinishedOrders setOrderReBuild = {props.setOrderReBuild}/>
             </Stack>
           </TabContext>
         </Stack>
@@ -86,7 +99,7 @@ return (
             >
               <div className={"order_user_img"}>
                 <img
-                src={"/others/user.png"}   
+                src={"/others/user.png"}
                 />
                 <div className={"order_user_icon_box"}>
                   <img
@@ -96,7 +109,7 @@ return (
                 </div>
               </div>
               <span className={"order_user_name"}>
-                Neo
+                Max
               </span>
               <span className={"order_user_prof"}>
               "Foydalanuvchi"
@@ -146,7 +159,7 @@ return (
             <input
               type={"text"}
               name={"card_creator"}
-              placeholder={"Sardor Akhmadullaev"}
+              placeholder={"Please enter your name"}
               className={"card_input"}
             />
             <div className={"cards_box"}>
@@ -161,8 +174,3 @@ return (
     </div>
   );
 }
-
-
-
-
-        

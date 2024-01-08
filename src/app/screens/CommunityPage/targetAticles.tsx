@@ -30,7 +30,7 @@ export function TargetArticles(props: any) {
                                     width={"35px"}
                                     style={{ borderRadius: "50%", backgroundSize: "cover" }}
                                 />
-                                <span className={"all_article_author_user"}>Neo</span>
+                                <span className={"all_article_author_user"}>Max</span>
                             </Box>
                             <Box
                                 display={"flex"}
@@ -79,7 +79,7 @@ export function TargetArticles(props: any) {
                                 </Box>
                             </Box>
                         </Box>
-                        
+
                     </Link>
                 )
             })}

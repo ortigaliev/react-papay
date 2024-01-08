@@ -52,7 +52,7 @@ export function NavbarOthers(props: any) {
                             Community
                         </NavLink>
             </Box>
-            
+
             {props.verifiedMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/member-page" activeClassName="underline">
@@ -60,7 +60,7 @@ export function NavbarOthers(props: any) {
                 </NavLink>
               </Box>
             ) : null}
-            
+
                     <Box className='hover-line' onClick={props.setPath}>
                         <NavLink to='/help' activeClassName="underline">
                             Help
@@ -71,8 +71,9 @@ export function NavbarOthers(props: any) {
                         onAdd={props.onAdd}
                         onRemove={props.onRemove}
                         onDelete={props.onDelete}
-                        onDeleteAll={props.onDeleteAll }/>
-            
+                        onDeleteAll={props.onDeleteAll}
+                        setOrderReBuild={props.setOrderReBuild}/>
+
                     {!props.verifiedMemberData ? (
               <Box>
                 <Button
@@ -90,7 +91,7 @@ export function NavbarOthers(props: any) {
                 onClick={props.handleLogOutClick}
               />
                     )};
-                    
+
                     <Menu
               anchorEl={props.anchorEl}
               open={props.open}
@@ -141,4 +142,3 @@ export function NavbarOthers(props: any) {
     </div>
     );
 }
-

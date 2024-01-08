@@ -8,7 +8,7 @@ import Basket from "./basket";
 
 export function NavbarHome(props: any) {
     // INITIALIZATION
-   
+
 
     return( <div className="format home_navbar">
         <Container>
@@ -40,7 +40,7 @@ export function NavbarHome(props: any) {
                      </NavLink>
                  </Box>
                     ) : null};
-                   
+
                     <Box className='hover-line' onClick={props.setPath}>
                         <NavLink to='/community' activeClassName="underline">
                             Community
@@ -53,7 +53,7 @@ export function NavbarHome(props: any) {
                      </NavLink>
                  </Box>
                     ) : null};
-                    
+
                     <Box className='hover-line' onClick={props.setPath}>
                         <NavLink to='/help' activeClassName="underline">
                             Help
@@ -65,8 +65,9 @@ export function NavbarHome(props: any) {
                         onRemove={props.onRemove}
                         onDelete={props.onDelete}
                         onDeleteAll={props.onDeleteAll}
+                        setOrderReBuild={props.setOrderReBuild}
                     />
-                    
+
                     {!props.verifiedMemberData ? (
                         <Box>
                             <Button
@@ -120,7 +121,7 @@ export function NavbarHome(props: any) {
               transformOrigin = {{horizontal: 'right',vertical: 'top' }}
               anchorOrigin={{horizontal: 'right',vertical: 'bottom'}}
             >
-              <MenuItem 
+              <MenuItem
               onClick={props.handleLogOutRequest}
               >
                 <ListItemIcon>
@@ -129,7 +130,7 @@ export function NavbarHome(props: any) {
                 Logout
               </MenuItem>
             </Menu>
-                    
+
 
                 </Stack>
             </Stack>
@@ -165,6 +166,6 @@ export function NavbarHome(props: any) {
                     <div className="big_img"></div>
                 </Stack>
             </Stack>
-        </Container> 
+        </Container>
     </div>
 )}

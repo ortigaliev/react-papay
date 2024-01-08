@@ -25,13 +25,14 @@ import assert from "assert"
 import { CartItem } from '../types/others';
 import { Product } from '../types/product';
 
-function App() {  
+function App() {
   // INITIALIZATION
   const [verifiedMemberData, setVerifiedMemberData] = useState<Member | null>(null)
   const [path, setPath] = useState()
   const main_path = window.location.pathname;
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [orderReBuild, setOrderReBuild] = useState<Date>(new Date());
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -39,8 +40,8 @@ function App() {
   const cartJson: any  = localStorage.getItem("cart_data");
   const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
-  
-  
+
+
   useEffect(() => {
     console.log("====useEffect====: App:");
     const memberDataJson: any = localStorage.getItem("member_data")
@@ -60,7 +61,7 @@ function App() {
   const handleSignUpClose = () => setSignUpOpen(false);
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
-  
+
   const handleLogOutClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -142,10 +143,11 @@ function App() {
           handleLogOutRequest={handleLogOutRequest}
           verifiedMemberData={verifiedMemberData}
           cartItems={cartItems}
-          onAdd={onAdd}  
+          onAdd={onAdd}
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderReBuild={setOrderReBuild}
 
         />
       ) : main_path.includes("/restaurant") ? (
@@ -160,12 +162,13 @@ function App() {
           handleLogOutRequest={handleLogOutRequest}
           verifiedMemberData={verifiedMemberData}
           cartItems={cartItems}
-          onAdd={onAdd}  
+          onAdd={onAdd}
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
-            
-            
+          setOrderReBuild={setOrderReBuild}
+
+
         />
       ) : (
         <NavbarOthers
@@ -179,13 +182,13 @@ function App() {
           handleLogOutRequest={handleLogOutRequest}
           verifiedMemberData={verifiedMemberData}
           cartItems={cartItems}
-          onAdd={onAdd}  
+          onAdd={onAdd}
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderReBuild={setOrderReBuild}
         />
       )}
-
       <Switch>
         <Route path="/restaurant">
           <RestaurantPage onAdd={onAdd} />
@@ -194,7 +197,10 @@ function App() {
           <CommunityPage />
         </Route>
         <Route path="/orders">
-          <OrdersPage />
+        <OrdersPage
+            orderReBuild={orderReBuild}
+            setOrderReBuild={setOrderReBuild}
+            verifiedMemberData={verifiedMemberData}/>
         </Route>
         <Route path="/member-page">
           <MemberPage />
@@ -222,9 +228,5 @@ function App() {
     </Router>
   );
 }
-  
+
 export default App;
-
-
-
-

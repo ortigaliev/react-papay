@@ -115,14 +115,14 @@ export function VisitMyPage(props: any) {
                 >
                   <div className="order_user_img">
                     <img
-                      src="/community/boy.jpeg"
+                      src="/community/avatar.png"
                       className="order_user_avatar"
                     />
                     <div className="order_user_icon_box">
                       <img src="/icons/user_icon.svg" alt="" />
                     </div>
                   </div>
-                  <span className="order_user_name">Neo</span>
+                  <span className="order_user_name">Max</span>
                   <span className="order_user_prof">USER</span>
                 </Box>
                 <Box className={"user_media_box"}>
