@@ -6,6 +6,7 @@ import { Restaurant } from "./user";
 
 /** REACT APP STATE */
 export interface AppRootState {
+    CommunityPage: any;
     homePage: HomePageState;
     restaurantPage: RestaurantPageState;
     ordersPage: OrdersPageState;
@@ -35,4 +36,9 @@ export interface OrdersPageState {
     pausedOrders: Order[],
     processOrders: Order[],
     finishedOrders: Order[]
+}
+
+//Community page
+export interface CommunityPageState {
+    targetBoArticles: BoArticle[];
 }

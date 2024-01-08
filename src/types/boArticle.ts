@@ -5,7 +5,7 @@ export interface BoArticle {
     _id: string;
     art_subject: string;
     art_constent: string;
-    art_image: string;
+    art_image ? : string | null;
     bo_id: string;
     art_status: number;
     art_likes: number;
@@ -14,5 +14,5 @@ export interface BoArticle {
     createdAt: Date;
     updatedAt: Date;
     member_data: Member;
-    me_liked: MeLiked[]; 
+    me_liked: MeLiked[];
 }
